@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="./resources/styles/reset.css" />
+<link rel="stylesheet" href="./resources/styles/login.css" />
+<script type="text/javascript" src="./resources/scripts/jquery.js"></script>
+<title>P1_UKK | LOGIN</title>
+</head>
+<body>
+<main>
+<h1>PEDULI DIRI</h1>
+<div class="card card-login">
+<label for="nik">NIK</label>
+<input type="text" name="nik" id="nik" placeholder="NIK" required />
+<label for="nama">Nama</label>
+<input type="text" name="nama" id="nama" placeholder="Nama" required />
+<i class="button login">Masuk</i>
+<i class="button new">Pengguna Baru</i>
+</div>
+</main>
+<script>
+if (localStorage.getItem("NIK")){
+$("body").html(" ");
+location.replace("index.html");
+}
+$(document).ready(function(){
+$("div.card-login > i.login").click(
+function () {
+$.ajax({url: "http://localhost:8000/login", contentType: "application/json", data:JSON.stringify({NIK: $("#nik").val(), nama: $("#nama").val()}), type: "POST", 
+success: function(result) {
+localStorage.setItem("NIK", result.NIK);
+localStorage.setItem("Nama", result.nama);
+location.replace("index.html");
+}
+});
+});
+$("div.card-login > i.new").click(function() {
+    $.ajax({url: "http://localhost:8000/new_user", contentType: "application/json", data:JSON.stringify({NIK: $("#nik").val(), nama: $("#nama").val()}), type: "POST", 
+    success: function(){
+        alert("akun telah dibuat! silahkan login.");
+        location.reload();
+    }, 
+    error: function() {
+        alert("akun gagal dibuat, NIK atau Nama sudah pernah dipakai.");
+    }
+});
+});
+});
+</script>
+</body>
+</html>

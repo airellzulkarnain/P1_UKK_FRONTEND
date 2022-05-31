@@ -1,0 +1,34 @@
+<script>
+$("i.button").click(function () {
+$.ajax({url: `http://localhost:8000/add_records?NIK=${localStorage.getItem("NIK")}`, contentType: "application/json", type: "POST", 
+data: JSON.stringify({tanggal: $("#tanggal").val(), waktu: $("#waktu").val(), lokasi: $("#lokasi").val(), suhu_tubuh: $("#suhu_tubuh").val()}), 
+success: function () {
+alert("record baru ditambahkan !");
+$("#tanggal").val(null);
+$("#waktu").val(null);
+$("#lokasi").val(null);
+$("#suhu_tubuh").val(null);
+}, 
+error: function () {
+alert("Warning! ada input yang tidak tepat !");
+}
+});
+});
+</script>
+<div class="input">
+<label for="tanggal">tanggal</label>
+<input type="text" id="tanggal" name="tanggal" placeholder="YYYY-MM-DD"/>
+</div>
+<div class="input">
+<label for="waktu">waktu</label>
+<input type="text" id="waktu" name="waktu" placeholder="HH:MM:SS"/>
+</div>
+<div class="input">
+<label for="lokasi">lokasi</label>
+<input type="text" id="lokasi" name="lokasi" placeholder="Lokasi" />
+</div>
+<div class="input">
+<label for="suhu_tubuh">suhu tubuh</label>
+<input type="text" id="suhu_tubuh" name="suhu_tubuh" placeholder="Suhu Tubuh" />
+</div>
+<i class="button">Simpan</i>

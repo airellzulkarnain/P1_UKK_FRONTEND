@@ -1,0 +1,51 @@
+<script>
+$(document).ready(function () {
+$.ajax({url: `http://localhost:8000/records?NIK=${localStorage.getItem("NIK")}`, contentType:"application/json", success:function(response){
+let result = JSON.stringify(response);
+var source = {
+    datatype: "json", 
+    datafields: [
+        {name: "tanggal"}, 
+        {name: "waktu"}, 
+        {name: "lokasi"}, 
+        {name: "suhu_tubuh"}
+    ], 
+    root: "Rows", 
+    url: `http://localhost:8000/records?NIK=${localStorage.getItem("NIK")}`, 
+    beforeprocessing: function (data){
+       source.totalrecords = data.TotalRows;
+    },
+    sort: function () {
+       $("#grid").jqxGrid("updatebounddata");
+    }, 
+    pagesize: 25
+};
+
+var dataAdapter = new $.jqx.dataAdapter(source);
+
+$("#grid").jqxGrid({
+    width: "100%", 
+    autoheight: true, 
+    source: dataAdapter, 
+    sortable: true,
+    pageable: true, 
+    virtualmode: true, 
+    columnsresize: true, 
+    columnsreorder: true, 
+    theme: 'dark', 
+    columns: [
+        {text: "Tanggal", datafield: "tanggal"},
+        {text: "Waktu", datafield: "waktu"}, 
+        {text: "Lokasi", datafield: "lokasi"}, 
+        {text: "Suhu Tubuh", datafield: "suhu_tubuh"}
+    ], 
+    rendergridrows: function() {
+        return dataAdapter.records;
+    }, 
+    pagesizeoptions: ['25']
+});
+}});
+});
+
+</script>
+<div id="grid"></div>

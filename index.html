@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>P1_UKK | AIRELL</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="./resources/styles/reset.css" />
+<link rel="stylesheet" href="./resources/styles/base.css" />
+<link rel="stylesheet" href="./resources/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="./resources/jqwidgets/jqwidgets/styles/jqx.dark.css" type="text/css" />
+<script type="text/javascript" src="./resources/jqwidgets/scripts/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxdata.js"></script> 
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxmenu.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxgrid.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxgrid.sort.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxgrid.pager.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxgrid.filter.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxgrid.selection.js"></script> 
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxgrid.columnsresize.js"></script> 
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxgrid.columnsreorder.js"></script> 
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxlistbox.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
+<script type="text/javascript" src="./resources/jqwidgets/scripts/demos.js"></script>
+</head>
+<body>
+<nav>
+<div class="navbar">
+<div class="navbar-img"></div>
+<div class="navbar-content">
+<h1>PEDULI DIRI</h1>
+<p></p>
+<i class="link">Home</i>
+|
+<i class="link">Catatan Perjalanan</i>
+|
+<i class="link">Isi Data</i>
+|
+<i class="link">Logout</i>
+</div>
+</div>
+</nav>
+<main>
+<div class="container"></div>
+</main>
+<script>
+if (!localStorage.getItem("NIK")){
+	$("body").html("<h1 style='font-size:30px;font-weight:bolder;text-align:center;'>PASTIKAN SUDAH LOGIN!</h1><p style='text-align:center;'>Kamu akan dialihkan dalam 5 detik.</p>");
+	setTimeout(function(){location.replace("login.html")}, 5000);
+}
+$(document).ready(function (){
+const Home = $(".navbar-content i:nth-of-type(1)");
+const CatatanPerjalanan = $(".navbar-content i:nth-of-type(2)");
+const IsiData = $(".navbar-content i:nth-of-type(3)");
+const Logout = $(".navbar-content i:nth-of-type(4)");
+const User = $(".navbar-content p:nth-of-type(1)");
+const Container = $(".container");
+
+Home.addClass("active-link");
+Container.load("./resources/templates/home.html");
+User.text(`${localStorage.getItem("Nama")}@${localStorage.getItem("NIK")}`);
+
+Home.click(function (){
+Container.load("./resources/templates/home.html");
+Home.addClass("active-link");
+CatatanPerjalanan.removeClass("active-link");
+IsiData.removeClass("active-link");
+});
+
+CatatanPerjalanan.click(function(){
+Container.load("./resources/templates/catatan-perjalanan.html");
+Home.removeClass("active-link");
+CatatanPerjalanan.addClass("active-link");
+IsiData.removeClass("active-link");
+});
+
+IsiData.click(function() {
+Container.load("./resources/templates/isi-data.html");
+Home.removeClass("active-link");
+CatatanPerjalanan.removeClass("active-link");
+IsiData.addClass("active-link");
+});
+
+Logout.click(function() {
+	localStorage.clear();
+	location.replace("login.html");
+});
+
+});
+</script>
+</body>
+</html>

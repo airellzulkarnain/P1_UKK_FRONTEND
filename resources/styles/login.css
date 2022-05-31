@@ -1,0 +1,63 @@
+body {
+font-family: Arial, Helvetica;
+font-size: 17px;
+}
+
+div.card-login {
+width: 200px;
+position: absolute;
+top: 40%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+vertical-align: center;
+background-color: white;
+border-radius: 15px;
+border: 2px solid black;
+padding: 20px 30px;
+}
+
+h1 {
+font-size: 30px;
+letter-spacing: 2px;
+font-weight: bolder;
+position: absolute;
+width: 100%;
+text-align: center;
+top: 10%;
+}
+
+div.card-login > * {
+display:block;
+box-sizing: border-box;
+margin: 6px 0;
+width: 100%;
+}
+
+div.card-login > input {
+border: 2px solid black;
+padding: 2px 4px;
+}
+
+div.card-login > input:focus {
+outline: none;
+background-color: lightgray;
+border: 2px solid rgba(0,0,0,0.5);
+}
+
+div.card-login > .button {
+background-color: black;
+color: white;
+padding: 4px 6px;
+margin-top: 22px;
+cursor: pointer;
+transition: background-color 0.5s;
+}
+
+div.card-login > .button:hover {
+background-color: #2f2f2f;
+}
+
+div.card-login > i.new {
+    margin-top: 4px;
+}

@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, Helvetica;
+    font-size: 17px;
+}
+
+.navbar {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 16px 28px;
+    box-sizing: border-box;
+    float: left;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+}
+
+.navbar-content>h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.navbar-content>p {
+    margin-bottom: 10px;
+}
+
+.navbar::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.navbar-img {
+    width: 100px;
+    height: 100px;
+    background-color: #0f0f0f;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.navbar-content {
+    display: inline-block;
+    height: 100px;
+    vertical-align: top;
+}
+
+.active-link {
+    color: gray;
+}
+
+.link:hover {
+    color: gray;
+    cursor: pointer;
+}
+
+.container {
+    width: 90%;
+    border: 1px solid black;
+    margin: 0 auto;
+    margin-top: 144.5px;
+    min-height: 200px;
+    padding: 10px;
+}
+
+.button {
+    color: white;
+    padding: 4px 6px;
+    width: 19%;
+    height: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #000;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    transition: background-color 0.5s;
+}
+
+.button:hover {
+    background-color: #3f3f3f;
+}
+
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container > div.input {
+    display: block;
+    margin: 15px 0;
+}
+
+.container > div.input > input, .container > i.button {
+    float: right;
+}
+
+.container > div.input > input {
+    display: inline-block;
+    padding: 4px 6px;
+    width: 80%;
+}
+
+.container > div.input > label {
+    width: 15%;
+    float: left;
+}
+
+.container > div.input::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.search-button {
+    float: left;
+}
+
+#keywords {
+    width: 80%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 4px 6px;
+    margin-right: 1%;
+    float: left;
+}
+
+.search {
+    margin-bottom: 16px;
+    height: 30px;
+    box-sizing: border-box;
+}
+
+.search::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+nav {position: relative; z-index: 2;}
+main {position: relative; z-index: 1;}
+
+@media screen and (max-width:500px) {
+    .container {
+        margin-top: 240px;
+    }
+}
