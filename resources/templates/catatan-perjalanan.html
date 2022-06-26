@@ -1,6 +1,7 @@
 <script>
+const IP = "http://192.168.0.154:8000";
 $(document).ready(function () {
-$.ajax({url: `http://localhost:8000/records?NIK=${localStorage.getItem("NIK")}`, contentType:"application/json", success:function(response){
+$.ajax({url: `${IP}/records?NIK=${localStorage.getItem("NIK")}`, contentType:"application/json", success:function(response){
 let result = JSON.stringify(response);
 var source = {
     datatype: "json", 
@@ -11,7 +12,7 @@ var source = {
         {name: "suhu_tubuh"}
     ], 
     root: "Rows", 
-    url: `http://localhost:8000/records?NIK=${localStorage.getItem("NIK")}`, 
+    url: `${IP}/records?NIK=${localStorage.getItem("NIK")}`, 
     beforeprocessing: function (data){
        source.totalrecords = data.TotalRows;
     },

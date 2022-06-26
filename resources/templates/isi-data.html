@@ -1,13 +1,10 @@
 <script>
+const IP = "http://192.168.0.154:8000";
 $("i.button").click(function () {
-$.ajax({url: `http://localhost:8000/add_records?NIK=${localStorage.getItem("NIK")}`, contentType: "application/json", type: "POST", 
-data: JSON.stringify({tanggal: $("#tanggal").val(), waktu: $("#waktu").val(), lokasi: $("#lokasi").val(), suhu_tubuh: $("#suhu_tubuh").val()}), 
+$.ajax({url: `${IP}/add_records?NIK=${localStorage.getItem("NIK")}`, contentType: "application/json", type: "POST", 
+data: JSON.stringify({tanggal: $("#tanggal").val(), waktu: $("#waktu").val(), lokasi: $("#lokasi").val(), suhu_tubuh: $("#suhu_tubuh").val(), timeout: 1000}), 
 success: function () {
 alert("record baru ditambahkan !");
-$("#tanggal").val(null);
-$("#waktu").val(null);
-$("#lokasi").val(null);
-$("#suhu_tubuh").val(null);
 }, 
 error: function () {
 alert("Warning! ada input yang tidak tepat !");

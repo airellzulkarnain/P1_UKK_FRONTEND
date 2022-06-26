@@ -13,7 +13,7 @@
 <h1>PEDULI DIRI</h1>
 <div class="card card-login">
 <label for="nik">NIK</label>
-<input type="text" name="nik" id="nik" placeholder="NIK" required />
+<input type="text" name="nik" id="nik" placeholder="NIK" maxlength="16" required />
 <label for="nama">Nama</label>
 <input type="text" name="nama" id="nama" placeholder="Nama" required />
 <i class="button login">Masuk</i>
@@ -21,6 +21,7 @@
 </div>
 </main>
 <script>
+const IP = "http://192.168.0.154:8000";
 if (localStorage.getItem("NIK")){
 $("body").html(" ");
 location.replace("index.html");
@@ -28,7 +29,7 @@ location.replace("index.html");
 $(document).ready(function(){
 $("div.card-login > i.login").click(
 function () {
-$.ajax({url: "http://localhost:8000/login", contentType: "application/json", data:JSON.stringify({NIK: $("#nik").val(), nama: $("#nama").val()}), type: "POST", 
+$.ajax({url: `${IP}/login`, contentType: "application/json", data:JSON.stringify({NIK: $("#nik").val(), nama: $("#nama").val()}), type: "POST", 
 success: function(result) {
 localStorage.setItem("NIK", result.NIK);
 localStorage.setItem("Nama", result.nama);
@@ -37,7 +38,7 @@ location.replace("index.html");
 });
 });
 $("div.card-login > i.new").click(function() {
-    $.ajax({url: "http://localhost:8000/new_user", contentType: "application/json", data:JSON.stringify({NIK: $("#nik").val(), nama: $("#nama").val()}), type: "POST", 
+    $.ajax({url: `${IP}/new_user`, contentType: "application/json", data:JSON.stringify({NIK: $("#nik").val(), nama: $("#nama").val()}), type: "POST", 
     success: function(){
         alert("akun telah dibuat! silahkan login.");
         location.reload();
